@@ -40,8 +40,12 @@ const bookSchema = new mongoose.Schema(
         },
         stock: {
             type: Number,
-            required: true,
+            required: [true, 'Stock Quantity is required'],
             min: 0
+        },
+        coverImage: {
+            type: String,
+            trim: true,
         }
     },
     {
