@@ -51,7 +51,12 @@ const bookSchema = new mongoose.Schema(
     {
         timestamps: true
     }
-)
+);
+
+bookSchema.index({ category: 1, price: 1 });
+bookSchema.index({ author: 1 });
+bookSchema.index({ rating: -1 });
+bookSchema.index({ year: -1 });
 
 const Book = mongoose.model('Book', bookSchema);
 module.exports = Book;
