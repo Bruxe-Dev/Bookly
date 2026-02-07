@@ -22,6 +22,12 @@ exports.getBooks = async (req, res) => {
             page = 1,
             limit = 10
         } = req.query;
+
+        const filter = {};
+
+        if (category) {
+            filter.category = category;
+        }
     } catch (error) {
 
     }
