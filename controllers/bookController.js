@@ -14,9 +14,7 @@ exports.getBooks = async (req, res) => {
             minYear,
             maxYear,
             inStock,
-            search, // Search in title and author
-
-            // Sorting parameters
+            search,
             sort = 'createdAt',
             order = 'desc',
 
