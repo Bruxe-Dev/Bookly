@@ -21,3 +21,5 @@ router.route('/:id')
     .get(getBookBtId)
     .put(updateBook)
     .delete(deleteBook)
+
+module.exports = router
