@@ -4,7 +4,7 @@ const router = express.Router();
 
 const {
     getBooks,
-    getBookBtId,
+    getBookById,
     createBook,
     updateBook,
     deleteBook,
@@ -18,7 +18,7 @@ router.route('/')
     .post(createBook)
 
 router.route('/:id')
-    .get(getBookBtId)
+    .get(getBookById)
     .put(updateBook)
     .delete(deleteBook)
 
