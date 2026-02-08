@@ -11,7 +11,7 @@ const {
     updateBook,
     deleteBook,
     getStatistics,
-} = require('../controllers/bookController');
+} = require('./controllers/bookController');
 const app = express()
 
 connectDB() //Connection to the database
