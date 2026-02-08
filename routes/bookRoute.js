@@ -11,7 +11,7 @@ const {
     getStatistics,
 } = require('../controllers/bookController');
 
-router.get('/statistics', getStatistics(req, res));
+router.get('/statistics', getStatistics);
 
 router.route('/')
     .get(getBooks)
