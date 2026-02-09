@@ -1,5 +1,5 @@
 const Book = require('../models/Book')
-const { createBookSchema, updateBookSchema } = require('../validators/book.validator')
+const { createBookSchema, updateBookSchema, idSchema } = require('../validators/book.validator')
 
 exports.getBooks = async (req, res) => {
     try {

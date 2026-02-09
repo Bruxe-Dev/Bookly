@@ -40,4 +40,8 @@ const updateBookSchema = Joi.object({
     coverImage: Joi.string().trim()
 }).min(1);
 
-module.exports = { createBookSchema, updateBookSchema }
+const idSchema = Joi.object({
+    id: Joi.string().hex().length(24).required()
+})
+
+module.exports = { createBookSchema, updateBookSchema, idSchema }
