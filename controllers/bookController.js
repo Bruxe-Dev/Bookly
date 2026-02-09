@@ -1,10 +1,21 @@
 const Book = require('../models/Book')
 const { createBookSchema, updateBookSchema, idSchema } = require('../validators/book.validator')
+const { bookQuerySchema } = require('../validators/book.query.validators')
 
 exports.getBooks = async (req, res) => {
     try {
+        const { error, value } = bookQuerySchema.validate(req.query, {
+            abortEarly: false
+        })
+
+        if (error) {
+            return res.status(400).json({
+                success: false,
+                message: error.details[0].message
+            })
+        }
+        req.query = value;
         const {
-            // Filtering parameters
             category,
             author,
             minPrice,
@@ -22,7 +33,7 @@ exports.getBooks = async (req, res) => {
             // Pagination parameters
             page = 1,
             limit = 10
-        } = req.query;
+        } = value;
 
         const filter = {};
 
