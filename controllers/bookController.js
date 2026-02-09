@@ -3,7 +3,7 @@ const { createBookSchema, updateBookSchema, idSchema } = require('../validators/
 const { bookQuerySchema } = require('../validators/book.query.validators')
 
 exports.getBooks = async (req, res) => {
-    tr {
+    try {
         const { error, value } = bookQuerySchema.validate(req.query, {
             abortEarly: false
         })
