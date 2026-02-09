@@ -32,7 +32,8 @@ const updateBookSchema = Joi.object({
         'business',
         'classics',
         'History',
-        'Fiction'
+        'Fiction',
+        'programming'
     ),
     publisher: Joi.string().trim(),
     year: Joi.number().min(1000),

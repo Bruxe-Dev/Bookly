@@ -19,8 +19,11 @@ const bookSchema = new mongoose.Schema(
             default: 0
         }, category: {
             type: String,
-            required: true,
-            enum: ['literal-fiction', 'science-fiction', 'mystery', 'science-tech', 'business', 'classics', 'History', 'Fiction']
+            required: [true, 'Category is required'],
+            enum: {
+                values: ['literal-fiction', 'science-fiction', 'mystery', 'science-tech', 'business', 'classics', 'History', 'Fiction'],
+                message: '{VALUE} is not a valid category'
+            }
         },
         publisher: {
             type: String,
