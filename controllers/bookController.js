@@ -146,6 +146,15 @@ exports.getBooks = async (req, res) => {
 
 exports.getBookById = async (req, res) => {
     try {
+        const { error } = idSchema.validate(req.params);
+
+        if (error) {
+            return res.status(400).json({
+                success: false,
+                message: 'Invalid Book Id'
+            });
+        }
+
         const book = await Book.findById(req.params.id).select('-__v');
 
         if (!book) {
