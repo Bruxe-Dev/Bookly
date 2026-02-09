@@ -1,5 +1,5 @@
 const Book = require('../models/Book')
-const { createBookSchema } = require('../validators/book.validator')
+const { createBookSchema, updateBookSchema } = require('../validators/book.validator')
 
 exports.getBooks = async (req, res) => {
     try {
@@ -218,6 +218,18 @@ exports.createBook = async (req, res) => {
 
 exports.updateBook = async (req, res) => {
     try {
+        const { error, value } = updateBookSchema.validate(req.body, {
+            abortEarly: false
+        })
+
+        if (error) {
+            return res.status(400).json({
+                success: false,
+                message: 'Validation Error',
+                errors: error.details.map(err => err.message)
+            })
+        }
+
         const book = await Book.findByIdAndUpdate(
             req.params.id,
             req.body,
