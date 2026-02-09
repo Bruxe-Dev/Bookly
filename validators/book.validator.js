@@ -19,3 +19,5 @@ const createBookSchema = Joi.object({
     stock: Joi.number().min(0).required(),
     coverImage: Joi.string().trim().optional
 })
+
+module.exports = { createBookSchema }
