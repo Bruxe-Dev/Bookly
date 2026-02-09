@@ -20,7 +20,7 @@ const bookSchema = new mongoose.Schema(
         }, category: {
             type: String,
             required: true,
-            enum: ['literal-fiction', 'science-fiction', 'mystery', 'science-tech', 'business', 'classics', 'History']
+            enum: ['literal-fiction', 'science-fiction', 'mystery', 'science-tech', 'business', 'classics', 'History', 'Fiction']
         },
         publisher: {
             type: String,
