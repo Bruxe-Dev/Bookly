@@ -200,7 +200,7 @@ exports.createBook = async (req, res) => {
             })
         }
 
-        const book = await Book.create(req.body);
+        const book = await Book.create(value);
 
         res.status(201).json({
             success: true,
@@ -241,7 +241,7 @@ exports.updateBook = async (req, res) => {
 
         const book = await Book.findByIdAndUpdate(
             req.params.id,
-            req.body,
+            value,
             {
                 new: true,              // Return updated document
                 runValidators: true     // Run schema validators
@@ -289,6 +289,14 @@ exports.updateBook = async (req, res) => {
 
 exports.deleteBook = async (req, res) => {
     try {
+        const { error } = idSchema.validate(req.params);
+
+        if (error) {
+            return res.status(400).json({
+                success: false,
+                message: 'Invalid ID'
+            })
+        }
         const book = await Book.findByIdAndDelete(req.params.id);
 
         if (!book) {
@@ -304,13 +312,6 @@ exports.deleteBook = async (req, res) => {
         });
 
     } catch (error) {
-        if (error.kind === 'ObjectId') {
-            return res.status(400).json({
-                success: false,
-                message: 'Invalid book ID format'
-            });
-        }
-
         res.status(500).json({
             success: false,
             message: 'Error deleting book',
