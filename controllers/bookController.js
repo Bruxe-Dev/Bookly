@@ -1,4 +1,5 @@
 const Book = require('../models/Book')
+const { createBookSchema } = require('../validators/book.validator')
 
 exports.getBooks = async (req, res) => {
     try {
@@ -178,6 +179,18 @@ exports.getBookById = async (req, res) => {
 
 exports.createBook = async (req, res) => {
     try {
+        const { error, value } = createBookSchema.validate(req.body, {
+            abortEarly: false
+        });
+
+        if (error) {
+            return res.status(400).json({
+                success: false,
+                message: 'Validation Error',
+                Errors: error.details.map(err => err.message)
+            })
+        }
+
         const book = await Book.create(req.body);
 
         res.status(201).json({
@@ -187,15 +200,6 @@ exports.createBook = async (req, res) => {
         });
 
     } catch (error) {
-        if (error.name === 'ValidationError') {
-            const messages = Object.values(error.errors).map(err => err.message);
-            return res.status(400).json({
-                success: false,
-                message: 'Validation error',
-                errors: messages
-            });
-        }
-
         if (error.code === 11000) {
             return res.status(400).json({
                 success: false,
