@@ -20,4 +20,24 @@ const createBookSchema = Joi.object({
     coverImage: Joi.string().trim().optional
 })
 
-module.exports = { createBookSchema }
+const updateBookSchema = Joi.object({
+    title: Joi.string().trim(),
+    author: Joi.string().trim(),
+    price: Joi.number().min(0),
+    category: Joi.string().valid(
+        'literal-fiction',
+        'science-fiction',
+        'mystery',
+        'science-tech',
+        'business',
+        'classics',
+        'History'
+    ),
+    publisher: Joi.string().trim(),
+    year: Joi.number().min(1000),
+    rating: Joi.number().min(1).max(5),
+    stock: Joi.number().min(0),
+    coverImage: Joi.string().trim()
+}).min(1);
+
+module.exports = { createBookSchema, updateBookSchema }
