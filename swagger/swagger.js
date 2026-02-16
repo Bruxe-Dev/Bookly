@@ -39,6 +39,19 @@ const options = {
                 url: "https://api.booklyonline.com",
                 description: "Deployment Server (Production Server)"
             }
+        ],
+
+        tags: [
+            {
+                names: 'books',
+                description: "Books managment and browsing endpoints"
+            },
+
+            {
+                names: 'statistics',
+                description: "Analytics and statistics endpoints"
+            }
         ]
+
     }
 }
