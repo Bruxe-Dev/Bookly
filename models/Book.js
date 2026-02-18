@@ -17,7 +17,8 @@ const bookSchema = new mongoose.Schema(
             required: true,
             min: 0,
             default: 0
-        }, category: {
+        },
+        category: {
             type: String,
             required: [true, 'Category is required'],
             enum: {

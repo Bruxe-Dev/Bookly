@@ -1,4 +1,5 @@
-const { version } = require('joi')
+const { version, required } = require('joi')
+const { Component } = require('react')
 const swaggerJsdoc = require('swagger-jsdoc')
 
 const options = {
@@ -51,7 +52,38 @@ const options = {
                 names: 'statistics',
                 description: "Analytics and statistics endpoints"
             }
-        ]
+        ],
 
+        Components: {
+            Schemas: {
+                Book: {
+                    type: 'object',
+                    required: ['title', 'author', 'price', 'category', 'publisher', 'year', 'rating', 'stock'],
+                    properties: {
+                        _id: {
+                            type: 'string',
+                            description: 'Book MongoDB Objectid',
+                            example: '507f1g677bcf86cd799439011'
+                        },
+                        title: {
+                            type: 'string',
+                            description: 'Name of the book',
+                            minLength: 1,
+                            maxLength: 200,
+                            example: 'Clean Code'
+                        },
+                        author: {
+                            type: 'string',
+                            description: 'Book author name',
+                            example: 'Robert C Martin'
+                        }
+                    }
+                }
+            }
+        }
     }
 }
+
+
+const swaggerSpec = swaggerJsdoc(options);
+module.exports = swaggerSpec;
