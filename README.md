@@ -1,4 +1,4 @@
-# 📚 Bookly API - Complete Backend with Filtering, Sorting & Pagination
+# 📚 Bookly API: Complete Backend with Filtering, Sorting & Pagination
 
 A professional-grade RESTful API for managing a bookstore, built with Node.js, Express, and MongoDB. Features comprehensive filtering, sorting, and pagination capabilities.
 
